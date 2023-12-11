@@ -1,6 +1,6 @@
 package kapia.dev.dto;
 
-public interface EmployeeLowestSalaryDTO {
+public interface EmployeeWithLowestSalaryPerDepartment {
 
     String getFirstName();
 

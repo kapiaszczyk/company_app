@@ -1,6 +1,6 @@
 package kapia.dev.controller;
 
-import kapia.dev.dto.EmployeeLowestSalaryDTO;
+import kapia.dev.dto.EmployeeWithLowestSalaryPerDepartment;
 import kapia.dev.model.Employee;
 import kapia.dev.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/lowest-salary-in-department")
-    public ResponseEntity<Iterable<EmployeeLowestSalaryDTO>> lowerSalary() {
+    public ResponseEntity<Iterable<EmployeeWithLowestSalaryPerDepartment>> lowerSalary() {
         return new ResponseEntity<>(employeeService.findAllWithLowestSalaryInDepartment(), HttpStatus.OK);
     }
 

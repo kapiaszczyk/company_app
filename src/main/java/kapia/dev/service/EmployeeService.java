@@ -1,6 +1,6 @@
 package kapia.dev.service;
 
-import kapia.dev.dto.EmployeeLowestSalaryDTO;
+import kapia.dev.dto.EmployeeWithLowestSalaryPerDepartment;
 import kapia.dev.model.Employee;
 import kapia.dev.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public List<EmployeeLowestSalaryDTO> findAllWithLowestSalaryInDepartment() {
+    public List<EmployeeWithLowestSalaryPerDepartment> findAllWithLowestSalaryInDepartment() {
         return employeeRepository.findAllWithLowestSalaryInDepartment();
     }
 

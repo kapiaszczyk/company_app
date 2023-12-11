@@ -1,6 +1,6 @@
 package kapia.dev.repository;
 
-import kapia.dev.dto.EmployeeLowestSalaryDTO;
+import kapia.dev.dto.EmployeeWithLowestSalaryPerDepartment;
 import kapia.dev.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -29,6 +29,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
                     "ORDER BY emp.department_id",
             nativeQuery = true
     )
-    List<EmployeeLowestSalaryDTO> findAllWithLowestSalaryInDepartment();
+    List<EmployeeWithLowestSalaryPerDepartment> findAllWithLowestSalaryInDepartment();
 
 }
