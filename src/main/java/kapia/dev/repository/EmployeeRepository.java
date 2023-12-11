@@ -1,6 +1,7 @@
 package kapia.dev.repository;
 
 import kapia.dev.dto.EmployeeWithLowestSalaryPerDepartment;
+import kapia.dev.dto.MatchingSalaryAndCommission;
 import kapia.dev.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -30,5 +31,27 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
             nativeQuery = true
     )
     List<EmployeeWithLowestSalaryPerDepartment> findAllWithLowestSalaryInDepartment();
+
+    // Get first name, last name, hire date, salary for all employees who have the same salary and commission as a given employee
+    // TODO: Validate if the query gives the correct result
+    @Query(
+            value = "SELECT" +
+                    "    emp.first_name AS firstName, " +
+                    "    emp.last_name AS lastName, " +
+                    "    emp.hire_date AS hireDate, " +
+                    "    emp.salary AS salary " +
+                    "FROM " +
+                    "    employees emp " +
+                    "WHERE " +
+                    "    (emp.salary, NVL(emp.commission_pct, 0)) " +
+                    "IN (" +
+                    "    SELECT salary, NVL(commission_pct, 0) " +
+                    "    FROM employees " +
+                    "    WHERE last_name = ?1 " +
+                    ") " +
+                    "AND emp.last_name != ?1",
+            nativeQuery = true
+    )
+    List<MatchingSalaryAndCommission> findAllWithSameSalaryAndCommission(String lastName);
 
 }
