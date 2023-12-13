@@ -12,6 +12,8 @@ import java.util.List;
 public class Department {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "departments_seq")
+    @SequenceGenerator(name = "departments_seq", sequenceName = "departments_seq", allocationSize = 1)
     @Column(name = "department_id")
     private Integer departmentId;
 

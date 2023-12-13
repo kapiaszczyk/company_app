@@ -5,10 +5,7 @@ import kapia.dev.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +24,11 @@ public class DepartmentController {
     @PostMapping("/add")
     public ResponseEntity<Department> addDepartment(Department department) {
         return new ResponseEntity<>(departmentService.addDepartment(department), HttpStatus.CREATED);
+    }
+
+    @PutMapping(value = "/update")
+    public ResponseEntity<Department> updateDepartment(@RequestParam(value = "department_id") Long departmentId, @RequestParam(value = "location_id") Long locationId) {
+        return new ResponseEntity<>(departmentService.updateDepartment(departmentId, locationId), HttpStatus.OK);
     }
 
 }
