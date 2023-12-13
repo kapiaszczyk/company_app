@@ -21,8 +21,8 @@ public class DepartmentController {
         return new ResponseEntity<>(departmentService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<Department> addDepartment(Department department) {
+    @PostMapping(value = "/add", consumes = "application/json")
+    public ResponseEntity<Department> addDepartment(@RequestBody Department department) {
         return new ResponseEntity<>(departmentService.addDepartment(department), HttpStatus.CREATED);
     }
 
