@@ -14,7 +14,7 @@
 	<name>dev</name>
 	<description>Application that connects with an Oracle Database</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>20</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
