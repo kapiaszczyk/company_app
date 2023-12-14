@@ -40,7 +40,7 @@ public class Employee {
     private Float commissionPct;
 
     @Column(name = "manager_id")
-    private Long managerId;
+    private Integer managerId;
 
     @ManyToOne
     @JoinColumn(name = "department_id")
@@ -50,7 +50,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Integer employeeId, String firstName, String lastName, String email, String phoneNumber, Date hireDate, String jobId, Integer salary, Float commissionPct, Long managerId, Department department) {
+    public Employee(Integer employeeId, String firstName, String lastName, String email, String phoneNumber, Date hireDate, String jobId, Integer salary, Float commissionPct, Integer managerId, Department department) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -136,11 +136,11 @@ public class Employee {
         this.commissionPct = commissionPct;
     }
 
-    public Long getManagerId() {
+    public Integer getManagerId() {
         return managerId;
     }
 
-    public void setManagerId(Long managerId) {
+    public void setManagerId(Integer managerId) {
         this.managerId = managerId;
     }
 
