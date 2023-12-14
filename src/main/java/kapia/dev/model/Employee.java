@@ -1,7 +1,10 @@
 package kapia.dev.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+
+import java.sql.Date;
 
 @Entity
 @Table(name = "employees")
@@ -24,7 +27,8 @@ public class Employee {
     private String phoneNumber;
 
     @Column(name = "hire_date")
-    private String hireDate;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date hireDate;
 
     @Column(name = "job_id", nullable = false)
     private String jobId;
@@ -46,7 +50,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Integer employeeId, String firstName, String lastName, String email, String phoneNumber, String hireDate, String jobId, Integer salary, Float commissionPct, Long managerId, Department department) {
+    public Employee(Integer employeeId, String firstName, String lastName, String email, String phoneNumber, Date hireDate, String jobId, Integer salary, Float commissionPct, Long managerId, Department department) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -100,11 +104,11 @@ public class Employee {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getHireDate() {
+    public Date getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(String hireDate) {
+    public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
     }
 
