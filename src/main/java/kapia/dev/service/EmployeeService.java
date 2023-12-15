@@ -50,4 +50,13 @@ public class EmployeeService {
         return employeeRepository.findAllByManagerId(managerId);
     }
 
+    public Employee updateSalary(Integer employeeId, Integer salary) {
+        Employee employee = employeeRepository.findById((long) employeeId)
+                .orElseThrow(() -> new EntityNotFoundException("Employee not found with ID: " + employeeId));
+
+        employee.setSalary(salary);
+
+        return employeeRepository.save(employee);
+    }
+
 }

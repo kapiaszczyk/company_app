@@ -36,4 +36,9 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.setAsManager(employeeIdList, managerId), HttpStatus.CREATED);
     }
 
+    @PatchMapping("/update-salary")
+    public ResponseEntity<Employee> updateSalary(@RequestParam(value = "employee_id") Integer employeeId, @RequestParam(value = "salary") Integer salary) {
+        return new ResponseEntity<>(employeeService.updateSalary(employeeId, salary), HttpStatus.OK);
+    }
+
 }
