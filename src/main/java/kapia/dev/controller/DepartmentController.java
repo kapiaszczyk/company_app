@@ -32,11 +32,6 @@ public class DepartmentController {
         return new ResponseEntity<>(departmentService.addDepartment(department), HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/update")
-    public ResponseEntity<Department> updateDepartment(@RequestParam(value = "department_id") Long departmentId, @RequestParam(value = "location_id") Long locationId) {
-        return new ResponseEntity<>(departmentService.updateDepartment(departmentId, locationId), HttpStatus.OK);
-    }
-
     @PatchMapping(value = "/update-location")
     public ResponseEntity<Department> updateDepartmentLocation(@RequestParam(value = "department_id") Long departmentId, @RequestParam(value = "location_id") Long locationId) {
         return new ResponseEntity<>(departmentService.updateLocation(departmentId, locationId), HttpStatus.OK);

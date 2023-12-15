@@ -32,21 +32,6 @@ public class DepartmentService {
         return departmentRepository.save(department);
     }
 
-    public Department updateDepartment(Long departmentId, Long locationId) {
-        // find department by id
-        Department departmentToUpdate = departmentRepository.findById(departmentId)
-                .orElseThrow(() -> new EntityNotFoundException("Department not found with id: " + departmentId));
-
-        // update department
-        Location newLocation = locationRepository.findById(locationId)
-                .orElseThrow(() -> new EntityNotFoundException("Location not found with id: " + locationId));
-
-        departmentToUpdate.setLocation(newLocation);
-
-        return departmentRepository.save(departmentToUpdate);
-
-    }
-
     public Department updateLocation(Long departmentId, Long locationId) {
         // find department by id
         Department departmentToUpdate = departmentRepository.findById(departmentId)
