@@ -31,7 +31,7 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.findAllWithSameSalaryAndCommission(lastName), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/set-as-manager", consumes = "application/json")
+    @PatchMapping(value = "/set-as-manager", consumes = "application/json")
     public ResponseEntity<Iterable<Employee>> setAsManager(@RequestBody int[] employeeIdList, @RequestParam(value = "manager_id") Integer managerId) {
         return new ResponseEntity<>(employeeService.setAsManager(employeeIdList, managerId), HttpStatus.CREATED);
     }
