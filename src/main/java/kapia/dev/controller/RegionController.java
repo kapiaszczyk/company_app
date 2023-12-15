@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/regions")
+@RequestMapping("/v1/regions")
 public class RegionController {
 
     @Autowired
     private RegionService regionService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Region>> findAll() {
         return new ResponseEntity<>(regionService.findAll(), HttpStatus.OK);
     }

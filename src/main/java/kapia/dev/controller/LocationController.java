@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/locations")
+@RequestMapping("/v1/locations")
 public class LocationController {
 
     @Autowired
     private LocationService locationService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Location>> findAll() {
         return new ResponseEntity<>(locationService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/add", consumes = "application/json")
+    @PostMapping(consumes = "application/json")
     public ResponseEntity<Location> addLocation(@RequestBody Location location) {
         return new ResponseEntity<>(locationService.addLocation(location), HttpStatus.CREATED);
     }

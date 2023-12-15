@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/countries")
+@RequestMapping("/v1/countries")
 public class CountryController {
 
     @Autowired
     private CountryService countryService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Country>> findAll() {
         return new ResponseEntity<>(countryService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/add", consumes = "application/json")
+    @PostMapping(consumes = "application/json")
     public ResponseEntity<Country> addCountry(@RequestBody Country country) {
         return new ResponseEntity<>(countryService.addCountry(country), HttpStatus.CREATED);
     }

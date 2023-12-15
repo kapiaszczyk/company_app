@@ -11,29 +11,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/departments")
+@RequestMapping("/v1/departments")
 public class DepartmentController {
 
     @Autowired
     private DepartmentService departmentService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Department>> findAll() {
         return new ResponseEntity<>(departmentService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/all-with-id-name-manager-id")
+    @GetMapping("/with-id-name-manager-id")
     public ResponseEntity<List<DepartmentIdNameManagerId>> findAllWithIdNameManagerId() {
         return new ResponseEntity<>(departmentService.findAllWithIdNameManagerId(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/add", consumes = "application/json")
+    @PostMapping(consumes = "application/json")
     public ResponseEntity<Department> addDepartment(@RequestBody Department department) {
         return new ResponseEntity<>(departmentService.addDepartment(department), HttpStatus.CREATED);
     }
 
-    @PatchMapping(value = "/update-location")
-    public ResponseEntity<Department> updateDepartmentLocation(@RequestParam(value = "department_id") Long departmentId, @RequestParam(value = "location_id") Long locationId) {
+    @PatchMapping(value = "/id/{department_id}/location-id/{location_id}")
+    public ResponseEntity<Department> updateDepartmentLocation(@PathVariable(value = "department_id") Long departmentId, @PathVariable(value = "location_id") Long locationId) {
         return new ResponseEntity<>(departmentService.updateLocation(departmentId, locationId), HttpStatus.OK);
     }
 

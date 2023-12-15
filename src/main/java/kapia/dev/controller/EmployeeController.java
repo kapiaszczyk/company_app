@@ -10,13 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/v1/employees")
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<Iterable<Employee>> findAll() {
         return new ResponseEntity<>(employeeService.findAll(), HttpStatus.OK);
     }
@@ -31,13 +31,13 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.findAllWithSameSalaryAndCommission(lastName), HttpStatus.OK);
     }
 
-    @PatchMapping(value = "/set-as-manager", consumes = "application/json")
-    public ResponseEntity<Iterable<Employee>> setAsManager(@RequestBody int[] employeeIdList, @RequestParam(value = "manager_id") Integer managerId) {
+    @PatchMapping(value = "/manager-id/{manager_id}", consumes = "application/json")
+    public ResponseEntity<Iterable<Employee>> setAsManager(@RequestBody int[] employeeIdList, @PathVariable(value = "manager_id") Integer managerId) {
         return new ResponseEntity<>(employeeService.setAsManager(employeeIdList, managerId), HttpStatus.CREATED);
     }
 
-    @PatchMapping("/update-salary")
-    public ResponseEntity<Employee> updateSalary(@RequestParam(value = "employee_id") Integer employeeId, @RequestParam(value = "salary") Integer salary) {
+    @PatchMapping("/id/{employee_id}/salary/{salary}")
+    public ResponseEntity<Employee> updateSalary(@PathVariable(value = "employee_id") Integer employeeId, @PathVariable(value = "salary") Integer salary) {
         return new ResponseEntity<>(employeeService.updateSalary(employeeId, salary), HttpStatus.OK);
     }
 
@@ -46,8 +46,8 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.delete(employeeId), HttpStatus.OK);
     }
 
-    @GetMapping("/find-by-department")
-    public ResponseEntity<Iterable<Employee>> findByDepartment(@RequestParam(value = "department_id") Integer departmentId) {
+    @GetMapping("/id/{department_id}")
+    public ResponseEntity<Iterable<Employee>> findByDepartment(@PathVariable(value = "department_id") Integer departmentId) {
         return new ResponseEntity<>(employeeService.findByDepartment(departmentId), HttpStatus.OK);
     }
 
