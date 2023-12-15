@@ -59,11 +59,13 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public void delete(Integer employeeId) {
+    public Void delete(Integer employeeId) {
         Employee employee = employeeRepository.findById((long) employeeId)
                 .orElseThrow(() -> new EntityNotFoundException("Employee not found with ID: " + employeeId));
 
         employeeRepository.delete(employee);
+
+        return null;
     }
 
     public Iterable<Employee> findByDepartment(Integer departmentId) {

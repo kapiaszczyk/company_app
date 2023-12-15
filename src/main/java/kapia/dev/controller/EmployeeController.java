@@ -41,9 +41,9 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.updateSalary(employeeId, salary), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<Void> delete(@RequestParam(value = "employee_id") Integer employeeId) {
-        return new ResponseEntity<>(HttpStatus.OK);
+    @DeleteMapping("/id/{employee_id}")
+    public ResponseEntity<Void> delete(@PathVariable(value = "employee_id") Integer employeeId) {
+        return new ResponseEntity<>(employeeService.delete(employeeId), HttpStatus.OK);
     }
 
     @GetMapping("/find-by-department")
