@@ -33,7 +33,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     List<EmployeeWithLowestSalaryPerDepartment> findAllWithLowestSalaryInDepartment();
 
     // Get first name, last name, hire date, salary for all employees who have the same salary and commission as a given employee
-    // TODO: Validate if the query gives the correct result
     @Query(
             value = "SELECT" +
                     "    emp.first_name AS firstName, " +
@@ -54,6 +53,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     )
     List<MatchingSalaryAndCommission> findAllWithSameSalaryAndCommission(String lastName);
 
+    // Set a given employee as a manager for a list of employees
     @Query(
             value = "UPDATE employees " +
                     "SET manager_id = ?2 " +
