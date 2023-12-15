@@ -50,4 +50,9 @@ public class EmployeeController {
     public ResponseEntity<Iterable<Employee>> findByDepartment(@RequestParam(value = "department_id") Integer departmentId) {
         return new ResponseEntity<>(employeeService.findByDepartment(departmentId), HttpStatus.OK);
     }
+
+    @PostMapping(consumes = "application/json")
+    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
+        return new ResponseEntity<>(employeeService.addEmployee(employee), HttpStatus.CREATED);
+    }
 }

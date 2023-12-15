@@ -69,4 +69,8 @@ public class EmployeeService {
     public Iterable<Employee> findByDepartment(Integer departmentId) {
         return employeeRepository.findByDepartmentId(departmentId);
     }
+
+    public Employee addEmployee(Employee employee) {
+        return employeeRepository.save(employee);
+    }
 }
