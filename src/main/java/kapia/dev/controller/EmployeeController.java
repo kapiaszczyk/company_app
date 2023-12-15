@@ -41,4 +41,9 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.updateSalary(employeeId, salary), HttpStatus.OK);
     }
 
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> delete(@RequestParam(value = "employee_id") Integer employeeId) {
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
