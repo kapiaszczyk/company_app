@@ -43,7 +43,11 @@ public class EmployeeController {
 
     @DeleteMapping("/id/{employee_id}")
     public ResponseEntity<Void> delete(@PathVariable(value = "employee_id") Integer employeeId) {
-        return new ResponseEntity<>(employeeService.delete(employeeId), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(employeeService.delete(employeeId), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
     }
 
     @GetMapping("/id/{department_id}")

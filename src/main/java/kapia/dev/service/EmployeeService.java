@@ -63,6 +63,10 @@ public class EmployeeService {
         Employee employee = employeeRepository.findById((long) employeeId)
                 .orElseThrow(() -> new EntityNotFoundException("Employee not found with ID: " + employeeId));
 
+        if (employeeRepository.existsByManagerId(employeeId)) {
+            throw new IllegalArgumentException("Employee is a manager and cannot be deleted");
+        }
+
         employeeRepository.delete(employee);
 
         return null;

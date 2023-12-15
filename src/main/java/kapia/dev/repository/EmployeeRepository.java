@@ -71,4 +71,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
             nativeQuery = true
     )
     Iterable<Employee> findByDepartmentId(Integer departmentId);
+
+    boolean existsByManagerId(Integer employeeId);
 }
