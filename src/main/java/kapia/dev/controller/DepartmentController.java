@@ -1,5 +1,6 @@
 package kapia.dev.controller;
 
+import kapia.dev.dto.DepartmentIdNameManagerId;
 import kapia.dev.model.Department;
 import kapia.dev.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class DepartmentController {
     @GetMapping("/all")
     public ResponseEntity<List<Department>> findAll() {
         return new ResponseEntity<>(departmentService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/all-with-id-name-manager-id")
+    public ResponseEntity<List<DepartmentIdNameManagerId>> findAllWithIdNameManagerId() {
+        return new ResponseEntity<>(departmentService.findAllWithIdNameManagerId(), HttpStatus.OK);
     }
 
     @PostMapping(value = "/add", consumes = "application/json")

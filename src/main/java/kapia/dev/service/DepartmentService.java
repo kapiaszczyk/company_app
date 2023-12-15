@@ -1,6 +1,7 @@
 package kapia.dev.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import kapia.dev.dto.DepartmentIdNameManagerId;
 import kapia.dev.model.Department;
 import kapia.dev.model.Location;
 import kapia.dev.repository.DepartmentRepository;
@@ -21,6 +22,10 @@ public class DepartmentService {
 
     public List<Department> findAll() {
         return departmentRepository.findAll();
+    }
+
+    public List<DepartmentIdNameManagerId> findAllWithIdNameManagerId() {
+        return departmentRepository.findAllWithIdNameManagerId();
     }
 
     public Department addDepartment(Department department) {
