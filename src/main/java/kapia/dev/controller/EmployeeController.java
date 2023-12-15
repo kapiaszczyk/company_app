@@ -7,10 +7,7 @@ import kapia.dev.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/employees")
@@ -32,6 +29,11 @@ public class EmployeeController {
     @GetMapping("/same-salary-and-commission-as")
     public ResponseEntity<Iterable<MatchingSalaryAndCommission>> sameSalaryAndCommission(@RequestParam("last_name") String lastName) {
         return new ResponseEntity<>(employeeService.findAllWithSameSalaryAndCommission(lastName), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/set-as-manager", consumes = "application/json")
+    public ResponseEntity<Iterable<Employee>> setAsManager(@RequestBody int[] employeeIdList, @RequestParam(value = "manager_id") Integer managerId) {
+        return new ResponseEntity<>(employeeService.setAsManager(employeeIdList, managerId), HttpStatus.CREATED);
     }
 
 }

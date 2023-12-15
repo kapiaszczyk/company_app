@@ -54,4 +54,14 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     )
     List<MatchingSalaryAndCommission> findAllWithSameSalaryAndCommission(String lastName);
 
+    @Query(
+            value = "UPDATE employees " +
+                    "SET manager_id = ?2 " +
+                    "WHERE employee_id IN ?1",
+            nativeQuery = true
+    )
+    List<Employee> setAsManager(int[] employeeIdList, Integer managerId);
+
+    List<Employee> findAllByManagerId(Integer managerId);
+
 }
