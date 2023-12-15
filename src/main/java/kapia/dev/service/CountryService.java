@@ -20,4 +20,10 @@ public class CountryService {
     public Country addCountry(Country country) {
         return countryRepository.save(country);
     }
+
+    public Void deleteCountry(Long countryId) {
+        Country country = countryRepository.findById(countryId).orElseThrow(() -> new RuntimeException("Country not found with id: " + countryId));
+        countryRepository.delete(country);
+        return null;
+    }
 }
