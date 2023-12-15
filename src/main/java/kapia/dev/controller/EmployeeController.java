@@ -46,4 +46,8 @@ public class EmployeeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/find-by-department")
+    public ResponseEntity<Iterable<Employee>> findByDepartment(@RequestParam(value = "department_id") Integer departmentId) {
+        return new ResponseEntity<>(employeeService.findByDepartment(departmentId), HttpStatus.OK);
+    }
 }

@@ -65,4 +65,8 @@ public class EmployeeService {
 
         employeeRepository.delete(employee);
     }
+
+    public Iterable<Employee> findByDepartment(Integer departmentId) {
+        return employeeRepository.findByDepartmentId(departmentId);
+    }
 }

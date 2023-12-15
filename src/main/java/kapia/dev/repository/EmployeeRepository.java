@@ -64,4 +64,11 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     List<Employee> findAllByManagerId(Integer managerId);
 
+    @Query(
+            value = "SELECT * " +
+                    "FROM employees " +
+                    "WHERE department_id = ?1",
+            nativeQuery = true
+    )
+    Iterable<Employee> findByDepartmentId(Integer departmentId);
 }
