@@ -1,5 +1,6 @@
 package kapia.dev.controller;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import kapia.dev.model.Job;
 import kapia.dev.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class JobController {
     }
 
     @GetMapping
+    @Hidden
     public ResponseEntity<List<Job>> findAll() {
         return new ResponseEntity<>(jobService.findAll(), HttpStatus.OK);
     }

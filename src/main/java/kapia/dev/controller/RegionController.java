@@ -1,5 +1,6 @@
 package kapia.dev.controller;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import kapia.dev.model.Region;
 import kapia.dev.service.RegionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class RegionController {
     }
 
     @GetMapping
+    @Hidden
     public ResponseEntity<List<Region>> findAll() {
         return new ResponseEntity<>(regionService.findAll(), HttpStatus.OK);
     }
