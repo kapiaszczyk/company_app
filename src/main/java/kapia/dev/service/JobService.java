@@ -10,8 +10,12 @@ import java.util.List;
 @Service
 public class JobService {
 
+    private final JobRepository jobRepository;
+
     @Autowired
-    private JobRepository jobRepository;
+    private JobService(JobRepository jobRepository) {
+        this.jobRepository = jobRepository;
+    }
 
     public List<Job> findAll() {
         return jobRepository.findAll();

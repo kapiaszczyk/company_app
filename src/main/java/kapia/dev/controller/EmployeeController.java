@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/v1/employees")
 public class EmployeeController {
 
+    private final EmployeeService employeeService;
+
     @Autowired
-    private EmployeeService employeeService;
+    private EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @GetMapping
     public ResponseEntity<Iterable<Employee>> findAll() {

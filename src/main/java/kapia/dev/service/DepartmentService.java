@@ -14,11 +14,14 @@ import java.util.List;
 @Service
 public class DepartmentService {
 
-    @Autowired
-    private DepartmentRepository departmentRepository;
+    private final DepartmentRepository departmentRepository;
+    private final LocationRepository locationRepository;
 
     @Autowired
-    private LocationRepository locationRepository;
+    private DepartmentService(DepartmentRepository departmentRepository, LocationRepository locationRepository) {
+        this.departmentRepository = departmentRepository;
+        this.locationRepository = locationRepository;
+    }
 
     public List<Department> findAll() {
         return departmentRepository.findAll();

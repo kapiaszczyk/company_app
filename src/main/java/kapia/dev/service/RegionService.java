@@ -10,8 +10,12 @@ import java.util.List;
 @Service
 public class RegionService {
 
+    private final RegionRepository regionRepository;
+
     @Autowired
-    private RegionRepository regionRepository;
+    private RegionService(RegionRepository regionRepository) {
+        this.regionRepository = regionRepository;
+    }
 
     public List<Region> findAll() {
         return regionRepository.findAll();

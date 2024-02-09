@@ -13,8 +13,12 @@ import java.util.List;
 @RequestMapping("/v1/locations")
 public class LocationController {
 
+    private final LocationService locationService;
+
     @Autowired
-    private LocationService locationService;
+    private LocationController(LocationService locationService) {
+        this.locationService = locationService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Location>> findAll() {

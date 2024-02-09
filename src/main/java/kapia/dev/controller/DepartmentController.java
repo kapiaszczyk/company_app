@@ -14,8 +14,12 @@ import java.util.List;
 @RequestMapping("/v1/departments")
 public class DepartmentController {
 
+    private final DepartmentService departmentService;
+
     @Autowired
-    private DepartmentService departmentService;
+    private DepartmentController(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Department>> findAll() {

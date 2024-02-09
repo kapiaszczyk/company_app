@@ -13,8 +13,12 @@ import java.util.List;
 @RequestMapping("/v1/countries")
 public class CountryController {
 
+    private final CountryService countryService;
+
     @Autowired
-    private CountryService countryService;
+    private CountryController(CountryService countryService) {
+        this.countryService = countryService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Country>> findAll() {

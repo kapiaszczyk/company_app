@@ -14,8 +14,12 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
+    private final EmployeeRepository employeeRepository;
+
     @Autowired
-    EmployeeRepository employeeRepository;
+    public EmployeeService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
 
     public List<Employee> findAll() {
         return employeeRepository.findAll();
@@ -29,6 +33,8 @@ public class EmployeeService {
         return employeeRepository.findAllWithSameSalaryAndCommission(lastName);
     }
 
+
+    // This makes Spring create a proxy that wraps the method call in a transaction - that is why the constructor cannot be private
     @Transactional
     public List<Employee> setAsManager(int[] employeeIdList, Integer managerId) {
         // Fetch the manager entity

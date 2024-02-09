@@ -15,8 +15,12 @@ import java.util.List;
 @RequestMapping("/v1/jobs")
 public class JobController {
 
+    private final JobService jobService;
+
     @Autowired
-    private JobService jobService;
+    private JobController(JobService jobService) {
+        this.jobService = jobService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Job>> findAll() {

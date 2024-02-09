@@ -15,8 +15,12 @@ import java.util.List;
 @RequestMapping("/v1/regions")
 public class RegionController {
 
+    private final RegionService regionService;
+
     @Autowired
-    private RegionService regionService;
+    private RegionController(RegionService regionService) {
+        this.regionService = regionService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Region>> findAll() {
