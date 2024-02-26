@@ -1,7 +1,7 @@
 <!-- Introduction -->
 <h3>company_app</h3>
 
-API accessing a Oracle database.
+API that accesses an Oracle database.
 
 <!-- ABOUT -->
 ### About
